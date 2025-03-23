@@ -7,11 +7,9 @@ import logging
 import traceback
 from aixplain.factories import PipelineFactory
 
-# Logging Configuration
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# Load environment variables
 load_dotenv()
 
 app = Flask(__name__)
@@ -37,9 +35,8 @@ except Exception as e:
 def download_and_convert_to_text(url):
     try:
         response = requests.get(url)
-        response.raise_for_status()  # Check if the request was successful
+        response.raise_for_status()  
 
-        # Assuming the content is in plain text format
         text_content = response.text
         return text_content
 
@@ -54,7 +51,6 @@ def text_to_text():
             logger.error("Pipeline not initialized")
             return jsonify({"response": "AI service not configured properly. Try again later."}), 500
 
-        # Check if text input or URL is present
         input_text = request.json.get('text')
         input_url = request.json.get('url')
 
@@ -67,12 +63,10 @@ def text_to_text():
             if not input_text:
                 return jsonify({"error": "Failed to download or convert the content from the URL"}), 400
 
-        # Run pipeline
         logger.info("Running pipeline for text processing...")
         result = pipeline.run({"Input 1": input_text})
         logger.info(f"Pipeline execution completed. Result: {result}")
 
-        # Extract text response
         ai_response = ""
         if isinstance(result, dict) and "data" in result:
             data_items = result.get("data", [])
