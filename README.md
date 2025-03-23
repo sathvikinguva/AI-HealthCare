@@ -43,11 +43,6 @@ old.js
     pip install -r requirements.txt
     ```
 
-3. Install the required Node.js packages (if any):
-    ```sh
-    npm install
-    ```
-
 ### Running the Project
 
 1. Start the Flask API:
