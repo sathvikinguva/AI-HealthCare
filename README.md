@@ -27,7 +27,6 @@ old.js
 
 ### Prerequisites
 
-- Node.js
 - Python 3.x
 - Flask
 
