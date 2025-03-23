@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Rural Healthcare</title>
+    <link rel="stylesheet" href="hac.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div id="login-page">
+        <div class="login-container">
+            <h1>Welcome to AI Healthcare</h1>
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Enter Username" required>
+                <span class="input-icon">👤</span>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Enter Password" required>
+                <span class="input-icon">🔒</span>
+            </div>
+            <button onclick="login()">Login</button>
+            <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
+        </div>
+    </div>
+
+    <!-- Welcome Page -->
+<div id="welcome-page" style="display: none;">
+    <div class="welcome-container">
+        <h1>Welcome to AI Healthcare</h1>
+        <p>Your health, our priority.</p>
+    </div>
+</div>
+
+    <!-- Main App -->
+    <div id="app" style="display: none;">
+    <div class="navbar">
+        <button onclick="openTab('home')">🏠 Home</button>
+        <button onclick="openTab('ai-consultation')">🤖 AI Consultation</button>
+        <button onclick="openTab('medical-history')">📋 Medical History</button>
+        <button onclick="openTab('consult-doc')">👨‍⚕️ Consult a Doc</button>
+        <button onclick="openTab('pharmacy')">💊 Pharmacy</button>
+        <button onclick="openTab('user-details')">👤 User Details</button>
+    </div>
+
+        <!-- Home Section -->
+        <div id="home" class="tab-content">
+            <h1>Welcome! Your Health in Your Hands</h1>
+            <button onclick="openTab('ai-consultation')">Get Started</button>
+            <div class="info-card">Daily Health Tip: Stay Hydrated!</div>
+            <div class="info-card">Recent Consultation: Flu Symptoms</div>
+        </div>
+
+<!-- AI Consultation -->
+<div id="ai-consultation" class="tab-content" style="display:none;">
+    <h1>AI Consultation</h1>
+    <p>Type Your Symptoms Below:</p>
+    <textarea id="symptom-input" placeholder="Type your symptoms here..." rows="5"></textarea>
+    <button onclick="analyzeSymptoms()">Analyze</button>
+    <div id="analysis-result"></div>
+</div>
+<!-- Medical History -->
+<div id="medical-history" class="tab-content" style="display:none;">
+    <h1>Medical History</h1>
+    <div class="medical-record">
+        <h3>Consultation on 10th October 2023</h3>
+        <p><strong>Diagnosis:</strong> Common Cold</p>
+        <p><strong>Prescription:</strong> Paracetamol 500mg, 3 times a day for 5 days.</p>
+    </div>
+    <div class="medical-record">
+        <h3>Consultation on 25th September 2023</h3>
+        <p><strong>Diagnosis:</strong> Hypertension</p>
+        <p><strong>Prescription:</strong> Amlodipine 5mg, once daily.</p>
+    </div>
+    <div class="medical-record">
+        <h3>Consultation on 15th August 2023</h3>
+        <p><strong>Diagnosis:</strong> Diabetes</p>
+        <p><strong>Prescription:</strong> Metformin 500mg, twice daily.</p>
+    </div>
+</div>
+  <!-- Consult a Doctor -->
+<div id="consult-doc" class="tab-content" style="display:none;">
+    <h1>Consult a Doctor</h1>
+    <div id="health-scheme-form">
+        <p>Are you eligible for any health scheme?</p>
+        <label>
+            <input type="radio" name="scheme-eligibility" value="yes" onclick="toggleSchemeDetails(true)"> Yes
+        </label>
+        <label>
+            <input type="radio" name="scheme-eligibility" value="no" onclick="toggleSchemeDetails(false)"> No
+        </label>
+        <div id="scheme-details" style="display: none;">
+            <input type="text" id="scheme-name" placeholder="Enter Scheme Name">
+            <input type="text" id="scheme-card-number" placeholder="Enter Card Number">
+        </div>
+        <button id="book-consultation-btn" style="display: none;" onclick="showDoctors()">Book Consultation</button>
+    </div>
+
+    <!-- Doctor List (Initially Hidden) -->
+    <div id="doctor-list" style="display: none;">
+        <h2>Available Doctors</h2>
+        <!-- Example Doctor Card -->
+        <div class="doctor-card">
+            <h3>Dr. John Smith</h3>
+            <p>🏥 City Hospital</p>
+            <p>Speciality: Cardiologist</p>
+            <button onclick="bookDoctor('Dr. John Smith')">Book Now</button>
+        </div>
+
+        <!-- Example Doctor Card -->
+        <div class="doctor-card">
+            <h3>Dr. Emily Davis</h3>
+            <p>🏥 Green Valley Clinic</p>
+            <p>Speciality: Pediatrician</p>
+            <button onclick="bookDoctor('Dr. Emily Davis')">Book Now</button>
+        </div>
+
+        <!-- Example Doctor Card -->
+        <div class="doctor-card">
+            <h3>Dr. Rajesh Kumar</h3>
+            <p>🏥 Apollo Hospital</p>
+            <p>Speciality: Orthopedic Surgeon</p>
+            <button onclick="bookDoctor('Dr. Rajesh Kumar')">Book Now</button>
+        </div>
+    </div>
+</div>
+
+        <!-- Pharmacy Tab -->
+        <div id="pharmacy" class="tab-content" style="display:none;">
+            <h1>Pharmacy</h1>
+            <div id="pharmacy-list">
+                <!-- Example Pharmacy Card -->
+                <div class="pharmacy-card">
+                    <h3>Green Valley Pharmacy</h3>
+                    <p>📍 2km away</p>
+                    <p>Prescription Available: <span class="availability">Yes</span></p>
+                    <p>Normal Price: ₹200</p>
+                    <p>Generic Price: ₹150</p>
+                    <div class="pharmacy-options">
+                        <button onclick="selectOption('delivery', 'Green Valley Pharmacy')">Delivery</button>
+                        <button onclick="selectOption('pickup', 'Green Valley Pharmacy')">Pickup</button>
+                    </div>
+                </div>
+
+                <!-- Example Pharmacy Card -->
+                <div class="pharmacy-card">
+                    <h3>MediCare Pharmacy</h3>
+                    <p>📍 5km away</p>
+                    <p>Prescription Available: <span class="availability">No</span></p>
+                    <p>Normal Price: ₹250</p>
+                    <p>Generic Price: ₹180</p>
+                    <div class="pharmacy-options">
+                        <button onclick="selectOption('delivery', 'MediCare Pharmacy')">Delivery</button>
+                        <button onclick="selectOption('pickup', 'MediCare Pharmacy')">Pickup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- User Details -->
+<div id="user-details" class="tab-content" style="display:none;">
+    <h1>Patient Details</h1>
+    <div class="user-profile">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-1tcZ9AWzzwu277kA0NAaGBdohRFmt-r59Q&s" alt="User Photo" class="profile-photo">
+        <p><strong>Name:</strong> Rahul</p>
+        <p><strong>Age:</strong> 45</p>
+        <p><strong>Blood Group:</strong> O+</p>
+        <p><strong>Allergies:</strong> Penicillin, Pollen</p>
+        <p><strong>Chronic Conditions:</strong> Hypertension, Diabetes</p>
+        <p><strong>Last Visit:</strong> 10th October 2023</p>
+    </div>
+</div>
+
+<footer>
+    <p>© 2023 AI Healthcare. All rights reserved.</p>
+    <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">LinkedIn</a>
+    </div>
+</footer>
+</div>
+    <script src="old.js"></script>
+    <script src="ai.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</body>
+</html>
